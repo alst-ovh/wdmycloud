@@ -1,0 +1,60 @@
+
+#!/bin/sh
+
+sshd_file='/etc/ssh/sshd_config'
+
+do_smart ()
+{
+  smartctl --all /dev/sda
+  smartctl --all /dev/sdb
+}
+
+do_passwd ()
+{
+  echo "=> Set root sshd Password"
+  echo
+  echo "=> Password root"
+  passwd root
+  echo "=> Password sshd"
+  passwd sshd
+}
+
+do_passwdsmb ()
+{
+  echo "=> Set $1 Password"
+  echo
+  echo "=> Password $1"
+  passwd $1
+  echo "=> SMB Password $1"
+  smbpasswd -U $1
+}
+
+do_sshd ()
+{
+  echo "=> Enable root ssh Login"
+  sed -i -e "s/^AllowUsers.*$/AllowUsers root sshd/" $sshd_file
+  pid=`ps aux | grep -e /usr/sbin/sshd | grep -v grep | tr -s " " | cut -d " " -f2`
+  kill -SIGHUP $pid
+}
+
+case "$1"
+    in
+  smart)
+    do_smart
+    ;;
+  passwd)
+    do_passwd
+    ;;
+  passwdsmb)
+    do_passwdsmb
+    ;;
+  sshd)
+    do_sshd
+    ;;
+  *)
+    echo "$0 smart = Show HDD Smart Values"
+    echo "$0 passwd = Set root sshd Password"
+    echo "$0 passwdsmb = Set User Password and SMB Password"
+    echo "$0 sshd = Set root allow ssh Login"
+    ;;
+esac

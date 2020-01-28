@@ -1,0 +1,17 @@
+Package:          dwexports
+Packager:         albert
+Email:            albert@alst.ovh
+Homepage:         https://alst.ovh
+Description:      NFS Exports /etc/exports fix for WD MyCloud
+Icon:             dwexports.png
+AddonShowName:    DWExports
+AddonIndexPage:
+AddonUsedPort:
+InstDepend:
+InstConflict:
+StartDepend:
+StartConflict:
+Version:          0.1
+MinFWVer:
+MaxFWVer:
+IndividualFlag:

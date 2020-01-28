@@ -1,0 +1,10 @@
+#!/system/bin/sh
+export TMPDIR=/data/local/tmp
+if [ ! -e $TMPDIR ]; then
+  mkdir $TMPDIR
+fi
+# So that F1, ... works
+export TERM=screen
+export TERMINFO=/etc/terminfo
+/system/xbin/mc.real $*
+

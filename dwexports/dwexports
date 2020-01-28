@@ -1,0 +1,5 @@
+#!/bin/sh
+
+exports_file='/etc/exports'
+sed -i -e "s/^\"\/nfs\/dw-backup.*$/\"\/nfs\/dw-backup\" *(rw,sync,no_wdelay,insecure_locks,insecure,no_subtree_check,no_root_squash)/" $exports_file
+exportfs -ra

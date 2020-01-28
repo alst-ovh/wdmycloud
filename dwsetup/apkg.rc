@@ -1,0 +1,17 @@
+Package:          dwsetup
+Packager:         albert
+Email:            albert@alst.ovh
+Homepage:         https://alst.ovh
+Description:      DWSetup for WD MyCloud
+Icon:             dwsetup.png
+AddonShowName:    DWSetup
+AddonIndexPage:
+AddonUsedPort:
+InstDepend:
+InstConflict:
+StartDepend:
+StartConflict:
+Version:          0.1
+MinFWVer:
+MaxFWVer:
+IndividualFlag:

@@ -1,0 +1,17 @@
+#!/bin/sh
+export TMPDIR=/mnt/HD/HD_a2/Nas_Prog/mc/mc/tmp
+if [ ! -e $TMPDIR ]; then
+  mkdir $TMPDIR
+fi
+
+if [ ! -e /system ]; then
+	ln -s /mnt/HD/HD_a2/Nas_Prog/mc/mc/system /system
+fi
+
+if [ ! -e /bin/mc ]; then
+	ln -s /mnt/HD/HD_a2/Nas_Prog/mc/mc /bin/mc
+fi
+
+export TERM=xterm
+export TERMINFO=/system/etc/terminfo
+/system/xbin/mc.real $*

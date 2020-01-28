@@ -1,0 +1,17 @@
+Package:          mc
+Packager:         albert
+Email:            albert@alst.ovh
+Homepage:         https://alst.ovh
+Description:      MC for WD MyCloud
+Icon:             mc.png
+AddonShowName:    MC
+AddonIndexPage:
+AddonUsedPort:
+InstDepend:
+InstConflict:
+StartDepend:
+StartConflict:
+Version:          0.1
+MinFWVer:
+MaxFWVer:
+IndividualFlag:

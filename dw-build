@@ -1,0 +1,111 @@
+#!/bin/bash
+
+do_build ()
+{
+  echo $1
+  cd $1
+  find . -name '*.sh' -exec chmod +x '{}' \;
+  chmod +x sbin/* > /dev/null 2>&1 || true
+  chmod +x bin/*  > /dev/null 2>&1 || true
+  ../mksapkg -E -s -m MyCloudEX2Ultra
+  cd ..
+}
+
+build ()
+{
+  pkg_found='no'
+  for Package in ${Package_List[@]}
+  do
+    if ([ -z "$1" ] || [ "$1" == "A" ]); then
+      pkg_found='yes'
+      do_build $Package
+    else
+      if [ "$1" == "$Package" ]; then
+        pkg_found='yes'
+        do_build $Package
+        break
+      fi
+    fi
+  done
+  for i in MyCloudEX2Ultra*.bin*; do
+    #echo  "=> Package:   ${i}"
+    mv $i ${i%\(*\)} > /dev/null 2>&1 || true
+  done
+}
+
+Package_List=(
+  dwsetup
+  dwexports
+  mc
+)
+
+build_all ()
+{
+  build $1 $2
+  exit
+}
+
+do_get_dev_packages ()
+{
+  MACHINE_TYPE=`uname -m`
+  if [ ${MACHINE_TYPE} == 'x86_64' ]; then
+    # 64-bit stuff here
+    ln -sf ./mksapkg-64b ./mksapkg
+  else
+    # 32-bit stuff here
+    ln -sf ./mksapkg-32b ./mksapkg
+  fi
+  apt update
+  apt upgrade
+  apt install libxml2 libxml2-dev
+}
+
+case "$1"
+    in
+  git)
+    git add -A && git commit -a -m "$(date +"%d.%m.%Y %H:%M:%S")"
+    ;;
+  git-cfg)
+    git config --global http.sslVerify false
+    git config credential.helper store
+    git config --global core.editor "mcedit"
+    ;;
+  git-push)
+    git push origin master
+    ;;
+  git-git-push)
+    git add -A && git commit -a -m "$(date +"%d.%m.%Y %H:%M:%S")" && git push origin master
+    ;;
+  git-info)
+    echo "git clone git://example.com:my_project.git"
+    echo "git remote add origin example.com:my_project.git"
+    echo "git remote set-url origin example.com:my_project.git"
+    ;;
+  apt)
+    apt clean
+    apt update
+    apt upgrade
+    ;;
+  A)
+    build_all $1 $2
+    ;;
+  dev)
+    do_get_dev_packages
+    ;;
+  *)
+    if [ $# -eq 0 ]
+    then
+      echo "$0 apt = apt clean & update & upgrade"
+      echo "$0 A = Build All"
+      echo "$0 <package> = Build Package"
+      echo "$0 git = git add -A && git commit -a -m 'date +\"%d.%m.%Y %H:%M:%S\""
+      echo "$0 git-push = git push origin master"
+      echo "$0 git-git-push = git add -A && git commit -a -m 'date +\"%d.%m.%Y %H:%M:%S\"' && git push origin master"
+      echo "$0 git-cfg = git config editor mcedit & passwd store"
+      echo "$0 git-info = shows additional infos"
+      echo "$0 dev = Install Developer Packages"
+    else
+      build $1 $2 $3
+    fi
+    ;;
+esac
