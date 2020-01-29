@@ -46,7 +46,7 @@ case "$1"
     do_passwd
     ;;
   passwdsmb)
-    do_passwdsmb
+    do_passwdsmb $2
     ;;
   sshd)
     do_sshd
