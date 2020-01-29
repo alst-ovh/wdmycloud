@@ -5,11 +5,11 @@ if [ ! -e $TMPDIR ]; then
 fi
 
 if [ ! -e /system ]; then
-	ln -s /mnt/HD/HD_a2/Nas_Prog/mc/mc/system /system
+  ln -s /mnt/HD/HD_a2/Nas_Prog/mc/mc/system /system
 fi
 
 if [ ! -e /bin/mc ]; then
-	ln -s /mnt/HD/HD_a2/Nas_Prog/mc/mc /bin/mc
+  ln -s /mnt/HD/HD_a2/Nas_Prog/mc/mc /bin/mc
 fi
 
 export TERM=xterm
