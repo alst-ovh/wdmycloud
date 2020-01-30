@@ -4,6 +4,10 @@ if [ ! -e $TMPDIR ]; then
   mkdir $TMPDIR
 fi
 
+if [ ! -e /system ]; then
+  mkdir /system
+fi
+
 if [ ! -e /system/etc ]; then
   ln -s /mnt/HD/HD_a2/Nas_Prog/mc/mc/system/etc /system/etc
 fi
