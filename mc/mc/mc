@@ -4,8 +4,20 @@ if [ ! -e $TMPDIR ]; then
   mkdir $TMPDIR
 fi
 
-if [ ! -e /system ]; then
-  ln -s /mnt/HD/HD_a2/Nas_Prog/mc/mc/system /system
+if [ ! -e /system/etc ]; then
+  ln -s /mnt/HD/HD_a2/Nas_Prog/mc/mc/system/etc /system/etc
+fi
+
+if [ ! -e /system/libexec ]; then
+  ln -s /mnt/HD/HD_a2/Nas_Prog/mc/mc/system/libexec /system/libexec
+fi
+
+if [ ! -e /system/share ]; then
+  ln -s /mnt/HD/HD_a2/Nas_Prog/mc/mc/system/share /system/share
+fi
+
+if [ ! -e /system/xbin ]; then
+  ln -s /mnt/HD/HD_a2/Nas_Prog/mc/mc/system/xbin /system/xbin
 fi
 
 if [ ! -e /bin/mc ]; then
