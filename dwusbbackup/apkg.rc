@@ -1,0 +1,17 @@
+Package:          dwusbbackup
+Packager:         albert
+Email:            albert@alst.ovh
+Homepage:         https://alst.ovh
+Description:      USB Backup Fix rsync timeout for WD MyCloud
+Icon:             dwusbbackup.png
+AddonShowName:    DWUsbBackup
+AddonIndexPage:
+AddonUsedPort:
+InstDepend:
+InstConflict:
+StartDepend:
+StartConflict:
+Version:          0.1
+MinFWVer:
+MaxFWVer:
+IndividualFlag:

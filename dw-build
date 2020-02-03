@@ -37,6 +37,7 @@ Package_List=(
   dwsetup
   dwexports
   mc
+  dwusbbackup
 )
 
 build_all ()
